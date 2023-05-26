@@ -32,6 +32,7 @@ describe("useUserList", () => {
         .birthdate({
           min: 18,
           max: 70,
+          mode: "age",
         })
         .toISOString()
         .split("T")[0],
@@ -59,6 +60,7 @@ describe("useUserList", () => {
         .birthdate({
           min: 0,
           max: 17,
+          mode: "age",
         })
         .toISOString()
         .split("T")[0],

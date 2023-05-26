@@ -12,19 +12,18 @@ const useUserList = () => {
 
   const deleteUser = (user: User) => {
     const birthDate = new Date(user.birthDate);
-    const now = new Date();
-    const age = now.getFullYear() - birthDate.getFullYear();
-    const month = now.getMonth() - birthDate.getMonth();
-    const day = now.getDate() - birthDate.getDate();
+    const currentDate = new Date();
 
-    const isAdult =
-      age > 18 ||
-      (age === 18 && month > 0) ||
-      (age === 18 && month === 0 && day >= 0);
+    const timeDiff = currentDate.getTime() - birthDate.getTime();
+    const ageInYears = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 365.25));
 
-    if (isAdult) {
-      dispatch(deleteUserRedux(user));
+    const child = ageInYears < 18;
+
+    if (child) {
+      return;
     }
+
+    dispatch(deleteUserRedux(user));
   };
 
   const orderBy = (field: keyof User) => {
