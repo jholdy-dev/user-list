@@ -48,6 +48,7 @@ describe("UserSlice", () => {
     store.dispatch(orderBy({ field }));
     expect(store.getState().userReducer.sortingState?.order).toEqual("desc");
   });
+
   it("should reset the state", () => {
     const expectedActions = {
       type: UserSlice.actions.reset.type,
